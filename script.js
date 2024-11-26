@@ -13,12 +13,6 @@ fetch('data/berggrunn.geojson')
     })
     .then(geojson => {
         console.log('GeoJSON-data:', geojson);  // Logg GeoJSON-dataene
-        L.geoJSON(geojson, {
-            style: function(feature) {
-                return style(feature, colorData);
-            },
-            onEachFeature: onEachFeature
-        }).addTo(map);
     })
     .catch(error => {
         console.error('Feil ved lasting av GeoJSON:', error);
