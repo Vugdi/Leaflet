@@ -60,11 +60,66 @@ fetch('data/berggrunn.geojson') // Endre til riktig filbane hvis nødvendig
     })
     .catch(error => console.log('Feil ved lasting av GeoJSON:', error));
 
+// Funksjon for å laste og parse CSV-filen
+function loadColorData() {
+  return new Promise((resolve, reject) => {
+    // Bruk PapaParse til å lese CSV-filen
+    Papa.parse('data/bergar_farger.csv', {
+      download: true,
+      header: true,
+      delimiter: ';',
+      complete: function(results) {
+        const colorData = {};
+        
+        // Lagre fargene i et objekt, der 'kode' er nøkkelen
+        results.data.forEach(row => {
+          // Del opp RGB-verdiene
+          const rgb = row['RGB-verdier'].split(',').map(Number);
+          colorData[row['kode']] = rgb;
+        });
 
+        resolve(colorData);
+      },
+      error: function(error) {
+        reject(error);
+      }
+    });
+  });
+}
 
+// Last inn farge-dataene
+let colorData = {};
 
+// Når kartet er klart, last fargedataene
+loadColorData().then(data => {
+  colorData = data;
+  console.log('Farger lastet', colorData);
+  
+  // Nå kan vi laste GeoJSON-dataene etter fargene
+  fetch('data/berggrunn.geojson')
+    .then(response => response.json())
+    .then(geojson => {
+      // Legg til GeoJSON-laget på kartet med riktige farger
+      L.geoJSON(geojson, {
+        style: function(feature) {
+          // Hent bergartens kode fra geojson-featuret og finn fargen
+          const bergartKode = feature.properties.hovedbergart;
+          const color = colorData[bergartKode] || [0, 0, 0]; // Default til svart hvis ikke funnet
 
-
+          // Sett fargen til fyllet
+          return {
+            color: 'black', // Randfarge
+            weight: 1,       // Randtykkelse
+            fillColor: `rgb(${color.join(',')})`, // RGB farge
+            fillOpacity: 0.7
+          };
+        }
+      }).addTo(map);
+    })
+    .catch(error => console.error('Feil ved lasting av GeoJSON', error));
+}).catch(error => {
+  console.error('Feil ved lasting av farger:', error);
+});
 
 // Legg til en marker
 var marker = L.marker([59.07019, 9.59538]).addTo(map);
