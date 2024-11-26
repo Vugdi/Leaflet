@@ -6,6 +6,21 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
+// Laster inn standard farger før csv filen blir lastet inn, kun for å sjekke
+L.geoJSON(geojson, {
+    style: function(feature) {
+        return {
+            fillColor: '#BDC3C7',  // Bruk en standard farge
+            weight: 2,
+            opacity: 1,
+            color: 'white',
+            dashArray: '3',
+            fillOpacity: 0.6
+        };
+    },
+    onEachFeature: onEachFeature
+}).addTo(map);
+
 // Funksjon for å tilpasse stilen på GeoJSON basert på bergarten
 function style(feature, colorData) {
     var color;
