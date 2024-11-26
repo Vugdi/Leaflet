@@ -10,13 +10,16 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 function style(feature, colorData) {
     var color;
 
-    // Sjekk hvilken bergart som er spesifisert i 'properties'
-    if (feature.properties.hovedbergart) {
-        const bergartKode = feature.properties.hovedbergart;
-        const rgb = colorData[bergartKode];
+    // Sjekk om vi har en bergart og at den eksisterer i colorData
+    if (feature.properties && feature.properties.hovedbergart) {
+        const bergartKode = feature.properties.hovedbergart; // Hent bergartens kode
+        console.log(`Bergartkode: ${bergartKode}`);  // Logg for å se hvilke koder som brukes
+        
+        const rgb = colorData[bergartKode];  // Hent fargen fra colorData
         if (rgb) {
             color = `rgb(${rgb.join(',')})`;  // Sett fargen til RGB-verdi
         } else {
+            console.warn(`Ingen farge funnet for bergartkode: ${bergartKode}`);  // Logg hvis farge ikke finnes
             color = '#BDC3C7';  // Standard farge hvis ikke funnet
         }
     } else {
@@ -45,7 +48,7 @@ function onEachFeature(feature, layer) {
 function loadColorData() {
     return new Promise((resolve, reject) => {
         // Bruk PapaParse til å lese CSV-filen
-        Papa.parse('data/bergart_farger.csv', {
+        Papa.parse('data/bergar_farger.csv', {
             download: true,
             header: true,
             delimiter: ';',
@@ -57,6 +60,8 @@ function loadColorData() {
                     // Del opp RGB-verdiene
                     const rgb = row['RGB-verdier'].split(',').map(Number);
                     colorData[row['kode']] = rgb;
+
+                    console.log(`Kode: ${row['kode']}, RGB: ${rgb}`); // Logg fargene for å se om parsing fungerer
                 });
 
                 resolve(colorData);
