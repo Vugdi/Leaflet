@@ -45,7 +45,7 @@ function onEachFeature(feature, layer) {
 function loadColorData() {
     return new Promise((resolve, reject) => {
         // Bruk PapaParse til å lese CSV-filen
-        Papa.parse('data/bergar_farger.csv', {
+        Papa.parse('data/bergart_farger.csv', {
             download: true,
             header: true,
             delimiter: ';',
