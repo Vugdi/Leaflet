@@ -1,0 +1,125 @@
+﻿kode;kodebeskrivelse; RGB-verdier
+1;Løsmasser;156, 156, 156
+100;Plutonsk bergart;255,79, 84
+101;Alkalifeltspatgranitt;255, 51, 0
+102;Granitt;255, 97, 135
+103;Granodioritt;247, 135, 135
+104;Tonalitt;222, 110, 110
+105;Trondhjemitt;255, 102, 46
+106;Alkalifeltspatsyenitt;247, 97, 135
+107;Syenitt;232, 102, 120
+108;Monzonitt;255,204, 204
+109;Monzodioritt;224, 117, 140
+110;Larvikitt;237, 117, 219
+111;Kvartsdioritt;235, 115, 168
+112;Dioritt;224, 171, 204
+113;Gabbro;176, 117, 110
+114;Noritt;204, 153, 153
+115;Kvartsmonzonitt;255, 168, 158
+116;Troktolitt;137, 112, 120
+120;Nefelinførende dypbergart;230, 204, 102
+129;Ultramafisk dypbergart;132, 0, 168
+130;Peridotitt;148, 0, 212
+131;Dunitt;197, 0, 255
+132;Harzburgitt;197, 0, 214
+133;Wehrlitt;204, 0, 255
+134;Lherzolitt;197, 112, 255
+135;Websteritt;197, 59, 255
+136;Pyroksenitt;153, 128, 255
+137;Hornblenditt;156, 43, 102
+139;Jotunitt;245, 202, 122
+140;Charnockitt;247, 97, 94
+141;Mangeritt;255, 153, 204
+142;Enderbitt;255, 115, 223
+143;Anortositt;224, 173, 173
+144;Karbonatitt;53, 77, 168
+150;Mafisk gang (Diabas, Doleritt);135, 0, 0
+151;Lamprofyr;204, 46, 120
+160;Pegmatitt/aplitt;255, 0, 0
+200;Vulkansk bergart;255, 190, 190
+201;Felsisk vulkansk bergart;255, 179, 230
+202;Ryolitt;255, 135, 145
+203;Ryodacitt;247, 171, 255
+204;Dacitt;224, 140, 194
+210;Intermediær vulkansk bergart;209, 176, 194
+211;Trakytt;252, 161, 184
+212;Rombeporfyr;204, 135, 255
+213;Latitt;204, 120, 173
+214;Andesitt;209, 176, 194
+220;Mafisk vulkansk bergart;230, 153, 25
+221;Basalt;196, 112, 0
+222;Ultramafisk vulkansk bergart;171, 87, 0
+230;Nefelinførende vulkansk bergart;204, 153, 46
+240;Pyroklastisk bergart;217, 217, 191
+241;Vulkanske breksje;217, 204, 179
+242;Lapillituff;199, 215, 158
+243;Tuff;230, 204, 102
+300;Sedimentær bergart;224, 255, 222
+301;Leirstein;204, 255, 135
+302;Slamstein;179, 230, 77
+303;Siltstein;230, 255, 77
+304;Sandstein;255, 255, 80
+305;Gråvakke;179, 204, 77
+306;Arkose;255, 230, 0
+307;Konglomerat;255, 255, 51
+308;Kvartsarenitt;230, 230, 25
+310;Sedimentær breksje;237, 255, 8
+311;Tillitt;237, 255, 8
+312;Diamiktitt;237, 255, 8
+320;Mergelstein;135, 255, 255
+321;Kalkstein;77, 230, 230
+322;Dolomittstein;0, 230, 230
+330;Kiselstein;247, 246, 181
+340;Tuffitt;222, 209, 173
+350;Båndet jernmalm;255, 255, 179
+400;Metamorf bergart;255, 167, 127
+401;Leirskifer;201, 255, 51
+402;Fyllitt;135, 255, 51
+403;Glimmerskifer;130, 227, 77
+404;Granatglimmerskifer;204, 230, 204
+405;Kalkfyllitt;171, 255, 237
+406;Kalkglimmerskifer;161, 237, 176
+407;Skarn;112, 68, 137
+408;Aluminiumsilikatskifer;217,235, 204
+409;Hornfels;255, 170, 0
+410;Amfibolskifer;212, 212, 150
+411;Grafittskifer;135, 201, 51
+412;Klorittskifer;179, 255, 128
+415;Marmor;77, 230, 230
+416;Dolomittmarmor;135, 255, 255
+417;Kalkspatmarmor;0, 169, 230
+420;Metasandstein;230, 255, 77
+421;Metagråvakke;181, 219, 36
+422;Meta-arkose;255, 227, 28
+423;Kvartsitt;255, 255, 0
+424;Kvartsskifer;217, 235, 94
+425;Meta-kiselstein;255, 255, 191
+426;Glimmergneis;191, 214, 194
+427;Kalksilikatbergart;153, 196, 232
+428;Aluminiumsilikatgneis;219, 235, 204
+429;Afibolgneis;204, 212, 166
+430;Granittisk gneis;255, 237, 237
+431;Granodiorittisk gneis;255, 217, 217
+432;Tonalittisk gneis;255, 204, 204
+433;Kvartsdiorittisk gneis;237, 166, 189
+434;Monzonittisk gneis;224, 148, 161
+435;Diorittisk gneis;205, 102, 153
+436;Kvartsmonzonittisk gneis;205, 156, 181
+437;Ortopyroksengneis;217, 115, 166
+440;Migmatitt;250, 224, 255
+441;Øyegneis;255, 230, 230
+442;Båndgneis;201, 219, 173
+450;Grønnskifer;224, 173, 173
+451;Grønnstein;204, 153, 46
+452;Amfibolitt;230, 179, 130
+453;Granatamfibolitt;237, 169, 3
+454;Metagabbro;230, 179, 130
+455;Eklogitt;186, 153, 171
+456;Serpentinitt;128, 102, 255
+457;Kleberstein;170, 127, 196
+460;Albititt;230, 204, 102
+461;Hydrotermalkvarts;242, 167, 127
+470;Mylonitt/Fyllonitt;128, 179, 102
+471;Kataklasitt;128, 179, 102
+472;Tektonisk breksje;255, 255, 204
+473;Nedslagsbreksje;255, 204, 204
