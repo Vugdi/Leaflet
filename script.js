@@ -81,17 +81,17 @@ loadColorData().then(data => {
 
     // Last GeoJSON-dataene etter at fargene er lastet
     fetch('data/berggrunn.geojson')
-        .then(response => response.json())
-        .then(geojson => {
-            // Legg til GeoJSON-laget på kartet med riktige farger
-            L.geoJSON(geojson, {
-                style: function(feature) {
-                    return style(feature, colorData);  // Bruk fargene fra CSV-filen
-                },
-                onEachFeature: onEachFeature
-            }).addTo(map);
-        })
-        .catch(error => console.error('Feil ved lasting av GeoJSON', error));
+    .then(response => response.json())
+    .then(geojson => {
+        console.log('GeoJSON-data lastet', geojson);  // Legg til denne loggen
+        L.geoJSON(geojson, {
+            style: function(feature) {
+                return style(feature, colorData);  // Bruk fargene fra CSV-filen
+            },
+            onEachFeature: onEachFeature
+        }).addTo(map);
+    })
+    .catch(error => console.error('Feil ved lasting av GeoJSON', error));
 
 }).catch(error => {
     console.error('Feil ved lasting av farger:', error);
