@@ -16,8 +16,8 @@ Papa.parse("data/bergart_farger.csv", {
     complete: function(results) {
         // Lagre fargene fra CSV-filen i objektet
         results.data.forEach(row => {
-            // Lag en RGB-verdi som en hex-verdi
-            var rgb = row['RGB-verdier'].split(',').map(num => parseInt(num.trim()));
+            // Lag en RGB-verdi som en hex-verdi, fjern eventuelle mellomrom
+            var rgb = row['RGB-verdier'].split(',').map(num => parseInt(num.trim())); 
             var hex = rgbToHex(rgb[0], rgb[1], rgb[2]);
             fargeKoder[row.kode] = hex;
         });
@@ -32,7 +32,6 @@ function rgbToHex(r, g, b) {
     return "#" + (1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase();
 }
 
-
 // Funksjon for å laste GeoJSON og bruke fargene
 function lastGeoJson() {
     var geojsonLayer = L.geoJSON().addTo(map);
@@ -44,7 +43,7 @@ function lastGeoJson() {
 
             // Fargelegg GeoJSON-ene
             geojsonLayer.eachLayer(function(layer) {
-                var kode = layer.feature.properties.kode;  // Anta at GeoJSON-en har et "kode" felt
+                var kode = layer.feature.properties.kode;  // GeoJSON-en antar et "kode"-felt
                 if (fargeKoder[kode]) {
                     layer.setStyle({
                         fillColor: fargeKoder[kode],
