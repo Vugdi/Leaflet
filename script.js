@@ -6,14 +6,15 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-// Les inn GeoJSON-fil og legg til på kartet
-fetch('berggrunn.geojson')
-    .then(response => response.json())
-    .then(data => {
-        // Legg GeoJSON-laget på kartet
-        L.geoJSON(data).addTo(map);
-    });
+// Hent GeoJSON-fil og legg til på kartet
+	var geojsonLayer = L.geoJSON().addTo(map);
 
+	fetch('data/berggrunn.geojson')  // GeoJSON-filen må være tilgjengelig her
+		.then(response => response.json())
+		.then(data => {
+			geojsonLayer.addData(data); // Legger GeoJSON-dataene til laget
+		})
+		.catch(error => console.log('Feil ved lastning av GeoJSON:', error));
 
 // Legg til en marker
 var marker = L.marker([59.07019, 9.59538]).addTo(map);
