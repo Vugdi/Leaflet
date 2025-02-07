@@ -21,8 +21,12 @@ Papa.parse("data/bergart_farger.csv", {
         results.data.forEach(row => {
             // Lag en RGB-verdi som en hex-verdi, fjern eventuelle mellomrom
             var rgb = row['RGB-verdier'].split(',').map(num => parseInt(num.trim())); 
-            var hex = rgbToHex(rgb[0], rgb[1], rgb[2]);
-            fargeKoder[row.kode] = hex;
+            if (rgb.length === 3) {  // Sjekk at vi har tre verdier
+                var hex = rgbToHex(rgb[0], rgb[1], rgb[2]);
+                fargeKoder[row.kode] = hex;
+            } else {
+                console.log(`Ugyldig RGB-verdi for kode ${row.kode}: ${row['RGB-verdier']}`);
+            }
         });
 
         // Når CSV-en er lastet, last GeoJSON og fargelegg den
@@ -47,7 +51,7 @@ function lastGeoJson() {
 
             // Fargelegg GeoJSON-ene
             geojsonLayer.eachLayer(function(layer) {
-                var kode = layer.feature.properties.hovedbergart;
+                var kode = layer.feature.properties.hovedbergart;  // Henter hovedbergart-koden fra GeoJSON
                 console.log("Kode for lag:", kode); // Logg kode for å sjekke om den er riktig
 
                 // Bruker fargekoden hvis den finnes, ellers sett en standardfarge
