@@ -6,6 +6,13 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
+// Les inn GeoJSON-fil og legg til på kartet
+fetch('bergart.geojson')
+    .then(response => response.json())
+    .then(data => {
+        // Legg GeoJSON-laget på kartet
+        L.geoJSON(data).addTo(map);
+    });
 
 
 // Legg til en marker
