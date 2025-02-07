@@ -79,4 +79,3 @@ function lastGeoJson() {
 // Legg til en marker
 var marker = L.marker([59.07019, 9.59538]).addTo(map);
 marker.bindPopup('<b>Hei, verden!</b>').openPopup();
-
