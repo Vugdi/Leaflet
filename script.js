@@ -7,7 +7,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // Les inn GeoJSON-fil og legg til på kartet
-fetch('bergart.geojson')
+fetch('berggrunn.geojson')
     .then(response => response.json())
     .then(data => {
         // Legg GeoJSON-laget på kartet
