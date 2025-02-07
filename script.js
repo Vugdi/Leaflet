@@ -7,11 +7,11 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // Hent GeoJSON-fil og legg til på kartet
-	var geojsonLayer = L.geoJSON().addTo(map);
 
 	fetch('data/berggrunn.geojson')  // GeoJSON-filen må være tilgjengelig her
 		.then(response => response.json())
 		.then(data => {
+			console.log(data);  // Sjekk GeoJSON-strukturen
 			geojsonLayer.addData(data); // Legger GeoJSON-dataene til laget
 		})
 		.catch(error => console.log('Feil ved lastning av GeoJSON:', error));
