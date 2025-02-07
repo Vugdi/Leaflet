@@ -43,7 +43,7 @@ function lastGeoJson() {
 
             // Fargelegg GeoJSON-ene
             geojsonLayer.eachLayer(function(layer) {
-                var kode = layer.feature.properties.kode;  // GeoJSON-en antar et "kode"-felt
+                var kode = layer.feature.properties.hovedbergart;  // Bruker "hovedbergart" som koden
                 if (fargeKoder[kode]) {
                     layer.setStyle({
                         fillColor: fargeKoder[kode],
