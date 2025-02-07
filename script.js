@@ -6,8 +6,6 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-
-
 // Hent GeoJSON-fil og legg til på kartet
 
 	fetch('data/berggrunn.geojson')  // GeoJSON-filen må være tilgjengelig her
