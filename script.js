@@ -40,7 +40,8 @@ function rgbToHex(r, g, b) {
 }
 
 // Funksjon for å laste GeoJSON og bruke fargene
-
+function lastGeoJson() {
+    var geojsonLayer = L.geoJSON().addTo(map);
 
     fetch('data/berggrunn.geojson')  // GeoJSON-filen må være tilgjengelig her
         .then(response => response.json())
