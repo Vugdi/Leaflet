@@ -1,5 +1,5 @@
 // Initialiser kartet
-var map = L.map('map').setView([59.07019, 9.59538], 9.5); // Sett posisjon og zoom-nivå
+var map = L.map('map').setView([59.07019, 9.59538], 9.5);
 
 // Legg til OpenStreetMap som bakgrunn
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -14,22 +14,14 @@ Papa.parse("data/bergart_farger.csv", {
     download: true,
     header: true,
     complete: function(results) {
-        // Logg CSV-dataene for å sjekke at de er lastet riktig
-        console.log("CSV Data:", results.data);
-
-        // Lagre fargene fra CSV-filen i objektet
+        console.log("CSV Data:", results.data); // Logg for å sjekke CSV-dataene
         results.data.forEach(row => {
-            // Lag en RGB-verdi som en hex-verdi, fjern eventuelle mellomrom
-            var rgb = row['RGB-verdier'].split(',').map(num => parseInt(num.trim())); 
-            if (rgb.length === 3) {  // Sjekk at vi har tre verdier
+            var rgb = row['RGB-verdier'].split(',').map(num => parseInt(num.trim()));
+            if (rgb.length === 3) {
                 var hex = rgbToHex(rgb[0], rgb[1], rgb[2]);
                 fargeKoder[row.kode] = hex;
-            } else {
-                console.log(`Ugyldig RGB-verdi for kode ${row.kode}: ${row['RGB-verdier']}`);
             }
         });
-
-        // Når CSV-en er lastet, last GeoJSON og fargelegg den
         lastGeoJson();
     }
 });
@@ -43,19 +35,16 @@ function rgbToHex(r, g, b) {
 function lastGeoJson() {
     var geojsonLayer = L.geoJSON().addTo(map);
 
-    fetch('data/berggrunn.geojson')  // GeoJSON-filen må være tilgjengelig her
+    fetch('data/berggrunn.geojson')
         .then(response => response.json())
         .then(data => {
-            console.log("GeoJSON Data:", data); // Logg GeoJSON-dataene for å sjekke at de er lastet riktig
-            geojsonLayer.addData(data); // Legger GeoJSON-dataene til laget
+            console.log("GeoJSON Data:", data); // Logg GeoJSON-dataene
+            geojsonLayer.addData(data);
 
-            // Fargelegg GeoJSON-ene
             geojsonLayer.eachLayer(function(layer) {
-                var kode = layer.feature.properties.hovedbergart;  // Henter hovedbergart-koden fra GeoJSON
-                console.log("Kode for lag:", kode); // Logg kode for å sjekke om den er riktig
-
-                // Bruker fargekoden hvis den finnes, ellers sett en standardfarge
-                if (fargeKoder[kode]) {
+                var kode = layer.feature.properties.hovedbergart;
+                console.log("Kode for lag:", kode); // Logg koden som brukes
+                if (kode && fargeKoder[kode]) {
                     layer.setStyle({
                         fillColor: fargeKoder[kode],
                         fillOpacity: 0.7,
@@ -63,9 +52,8 @@ function lastGeoJson() {
                         weight: 1
                     });
                 } else {
-                    // Bruk en standardfarge hvis fargekoden ikke finnes
                     layer.setStyle({
-                        fillColor: 'gray', // Standardfarge hvis kode ikke finnes
+                        fillColor: 'gray',
                         fillOpacity: 0.7,
                         color: 'black',
                         weight: 1
@@ -75,7 +63,3 @@ function lastGeoJson() {
         })
         .catch(error => console.log('Feil ved lastning av GeoJSON:', error));
 }
-
-// Legg til en marker
-var marker = L.marker([59.07019, 9.59538]).addTo(map);
-marker.bindPopup('<b>Hei, verden!</b>').openPopup();
