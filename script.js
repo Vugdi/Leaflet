@@ -14,6 +14,9 @@ Papa.parse("data/bergart_farger.csv", {
     download: true,
     header: true,
     complete: function(results) {
+        // Logg CSV-dataene for å sjekke at de er lastet riktig
+        console.log("CSV Data:", results.data);
+
         // Lagre fargene fra CSV-filen i objektet
         results.data.forEach(row => {
             // Lag en RGB-verdi som en hex-verdi, fjern eventuelle mellomrom
@@ -39,14 +42,26 @@ function lastGeoJson() {
     fetch('data/berggrunn.geojson')  // GeoJSON-filen må være tilgjengelig her
         .then(response => response.json())
         .then(data => {
+            console.log("GeoJSON Data:", data); // Logg GeoJSON-dataene for å sjekke at de er lastet riktig
             geojsonLayer.addData(data); // Legger GeoJSON-dataene til laget
 
             // Fargelegg GeoJSON-ene
             geojsonLayer.eachLayer(function(layer) {
-                var kode = layer.feature.properties.hovedbergart;  // Bruker "hovedbergart" som koden
+                var kode = layer.feature.properties.hovedbergart;
+                console.log("Kode for lag:", kode); // Logg kode for å sjekke om den er riktig
+
+                // Bruker fargekoden hvis den finnes, ellers sett en standardfarge
                 if (fargeKoder[kode]) {
                     layer.setStyle({
                         fillColor: fargeKoder[kode],
+                        fillOpacity: 0.7,
+                        color: 'black',
+                        weight: 1
+                    });
+                } else {
+                    // Bruk en standardfarge hvis fargekoden ikke finnes
+                    layer.setStyle({
+                        fillColor: 'gray', // Standardfarge hvis kode ikke finnes
                         fillOpacity: 0.7,
                         color: 'black',
                         weight: 1
@@ -60,3 +75,4 @@ function lastGeoJson() {
 // Legg til en marker
 var marker = L.marker([59.07019, 9.59538]).addTo(map);
 marker.bindPopup('<b>Hei, verden!</b>').openPopup();
+
